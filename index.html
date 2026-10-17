@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BusGo | Smart Bus Booking & Tracking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-star">✦</span>
+        Bus<span>Go</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#search">Book</a>
+        <a href="#tracking">Track Bus</a>
+        <a href="#features">Features</a>
+    </nav>
+
+    <button class="login-btn">
+        Login
+    </button>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            ● SMART TRAVEL PLATFORM
+        </div>
+
+        <h1>
+            Book your seat.
+            <span>Track your journey.</span>
+        </h1>
+
+        <p>
+            Search buses, choose your preferred seat,
+            confirm your ticket and track your bus journey
+            from one simple platform.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#search" class="primary-btn">
+                Book a Bus →
+            </a>
+
+            <a href="#tracking" class="secondary-btn">
+                Track Bus
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-visual">
+
+        <div class="floating-card card-one">
+            <span>LIVE STATUS</span>
+            <strong>● On Time</strong>
+        </div>
+
+        <div class="bus-scene">
+
+            <div class="sun"></div>
+
+            <div class="mountain mountain-one"></div>
+            <div class="mountain mountain-two"></div>
+
+            <div class="road-line"></div>
+
+            <div class="hero-bus">
+
+                <div class="front-window"></div>
+
+                <div class="bus-window"></div>
+                <div class="bus-window"></div>
+                <div class="bus-window"></div>
+
+                <div class="hero-wheel wheel-left"></div>
+                <div class="hero-wheel wheel-right"></div>
+
+            </div>
+
+        </div>
+
+        <div class="floating-card card-two">
+            <span>ETA</span>
+            <strong>2h 15m</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-section" id="search">
+
+    <div class="section-title">
+
+        <span>PLAN YOUR JOURNEY</span>
+
+        <h2>Find your perfect bus</h2>
+
+        <p>
+            Search available buses by route and travel date.
+        </p>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <div class="input-group">
+
+            <label>FROM</label>
+
+            <div class="input-field">
+
+                <span>📍</span>
+
+                <select id="fromCity">
+
+                    <option value="">Select city</option>
+
+                    <option value="Bengaluru">
+                        Bengaluru
+                    </option>
+
+                    <option value="Chennai">
+                        Chennai
+                    </option>
+
+                    <option value="Hyderabad">
+                        Hyderabad
+                    </option>
+
+                    <option value="Tirupati">
+                        Tirupati
+                    </option>
+
+                    <option value="Vijayawada">
+                        Vijayawada
+                    </option>
+
+                    <option value="Pune">
+                        Pune
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="swap-btn"
+            onclick="swapCities()"
+        >
+            ⇄
+        </button>
+
+
+        <div class="input-group">
+
+            <label>TO</label>
+
+            <div class="input-field">
+
+                <span>📍</span>
+
+                <select id="toCity">
+
+                    <option value="">Select city</option>
+
+                    <option value="Bengaluru">
+                        Bengaluru
+                    </option>
+
+                    <option value="Chennai">
+                        Chennai
+                    </option>
+
+                    <option value="Hyderabad">
+                        Hyderabad
+                    </option>
+
+                    <option value="Tirupati">
+                        Tirupati
+                    </option>
+
+                    <option value="Vijayawada">
+                        Vijayawada
+                    </option>
+
+                    <option value="Pune">
+                        Pune
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>TRAVEL DATE</label>
+
+            <div class="input-field">
+
+                <span>📅</span>
+
+                <input
+                    type="date"
+                    id="travelDate"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="search-btn"
+            onclick="searchBuses()"
+        >
+            Search Buses
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SEARCH RESULTS ================= -->
+
+<section class="results-section">
+
+    <div class="results-heading">
+
+        <div>
+
+            <span>AVAILABLE BUSES</span>
+
+            <h2 id="routeTitle">
+                Search for your journey
+            </h2>
+
+        </div>
+
+        <div id="resultCount"></div>
+
+    </div>
+
+
+    <div id="busList" class="bus-list">
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🚌
+            </div>
+
+            <h3>
+                Ready for your journey?
+            </h3>
+
+            <p>
+                Select your route above to find available buses.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TRACKING ================= -->
+
+<section class="tracking-section" id="tracking">
+
+    <div class="section-title">
+
+        <span>LIVE JOURNEY</span>
+
+        <h2>Track your bus</h2>
+
+        <p>
+            Follow your bus journey and check its estimated arrival.
+        </p>
+
+    </div>
+
+
+    <div class="tracking-container">
+
+
+        <!-- TRACKING HEADER -->
+
+        <div class="tracking-header">
+
+            <div>
+
+                <div class="live-badge">
+                    <i></i>
+                    LIVE TRACKING
+                </div>
+
+                <h2 id="trackingBusName">
+                    GreenLine Express
+                </h2>
+
+                <p id="trackingRoute">
+                    Bengaluru → Chennai
+                </p>
+
+            </div>
+
+
+            <div class="tracking-actions">
+
+                <button
+                    class="track-select-btn"
+                    onclick="changeTrackedBus()"
+                >
+                    Change Bus
+                </button>
+
+                <button
+                    class="refresh-btn"
+                    onclick="refreshTracking()"
+                >
+                    ↻
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRACKING CONTENT -->
+
+        <div class="tracking-grid">
+
+
+            <!-- MAP -->
+
+            <div class="map-card">
+
+                <div class="map-top">
+
+                    <div>
+                        <span>BUS LOCATION</span>
+                        <strong id="currentLocation">
+                            Electronic City
+                        </strong>
+                    </div>
+
+                    <div class="on-time">
+                        ● ON TIME
+                    </div>
+
+                </div>
+
+
+                <div class="map">
+
+                    <div class="map-grid"></div>
+
+                    <!-- ROUTE -->
+
+                    <div class="route-path">
+
+                        <div class="route-line-background"></div>
+
+                        <div
+                            class="route-line-progress"
+                            id="routeProgress"
+                        ></div>
+
+                        <div class="location-point start">
+                            <span>B</span>
+                        </div>
+
+                        <div
+                            class="bus-marker"
+                            id="busMarker"
+                        >
+                            🚌
+                        </div>
+
+                        <div class="location-point end">
+                            <span>C</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="map-label label-start">
+                        Bengaluru
+                    </div>
+
+                    <div
+                        class="map-label label-current"
+                        id="mapCurrentLabel"
+                    >
+                        Electronic City
+                    </div>
+
+                    <div class="map-label label-end">
+                        Chennai
+                    </div>
+
+
+                    <div class="map-road road-one"></div>
+                    <div class="map-road road-two"></div>
+                    <div class="map-road road-three"></div>
+
+                </div>
+
+
+                <!-- MAP LEGEND -->
+
+                <div class="map-legend">
+
+                    <span>
+                        <i class="legend-bus"></i>
+                        Bus
+                    </span>
+
+                    <span>
+                        <i class="legend-route"></i>
+                        Completed
+                    </span>
+
+                    <span>
+                        <i class="legend-pending"></i>
+                        Remaining
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRACKING DETAILS -->
+
+            <div class="tracking-info">
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <span>
+                            CURRENT LOCATION
+                        </span>
+
+                        <strong id="locationDetail">
+                            Electronic City
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ⏱
+                    </div>
+
+                    <div>
+
+                        <span>
+                            ESTIMATED ARRIVAL
+                        </span>
+
+                        <strong id="eta">
+                            2h 15m
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        📊
+                    </div>
+
+                    <div class="progress-info">
+
+                        <span>
+                            JOURNEY PROGRESS
+                        </span>
+
+                        <strong>
+                            <span id="progressPercent">
+                                38
+                            </span>%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="progressBar"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        🚦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            BUS STATUS
+                        </span>
+
+                        <strong class="status-text">
+                            On Time
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="full-track-btn"
+                    onclick="startTracking()"
+                >
+                    ▶ Start Live Tracking
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- JOURNEY STOPS -->
+
+        <div class="journey-stops">
+
+            <h3>
+                Journey stops
+            </h3>
+
+            <div class="stops">
+
+                <div class="stop completed">
+
+                    <div class="stop-dot">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Bengaluru</strong>
+                        <span>Departed · 06:30 AM</span>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stop active"
+                    id="stopTwo"
+                >
+
+                    <div class="stop-dot">
+                        ●
+                    </div>
+
+                    <div>
+                        <strong id="stopCurrent">
+                            Electronic City
+                        </strong>
+
+                        <span>
+                            Current location
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="stop">
+
+                    <div class="stop-dot">
+                        ○
+                    </div>
+
+                    <div>
+                        <strong>Vellore</strong>
+                        <span>Expected · 10:30 AM</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stop">
+
+                    <div class="stop-dot">
+                        ○
+                    </div>
+
+                    <div>
+                        <strong>Chennai</strong>
+                        <span>Expected · 01:00 PM</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features-section" id="features">
+
+    <div class="section-title">
+
+        <span>WHY BUSGO?</span>
+
+        <h2>Everything for your journey</h2>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔎
+            </div>
+
+            <h3>
+                Easy Search
+            </h3>
+
+            <p>
+                Quickly search buses by selecting your
+                departure city, destination and travel date.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💺
+            </div>
+
+            <h3>
+                Smart Seat Selection
+            </h3>
+
+            <p>
+                View available and occupied seats and
+                choose the seat that works best for you.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📍
+            </div>
+
+            <h3>
+                Live Bus Tracking
+            </h3>
+
+            <p>
+                Follow your bus route and view current
+                location, journey progress and ETA.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎫
+            </div>
+
+            <h3>
+                Instant Confirmation
+            </h3>
+
+            <p>
+                Enter passenger details and receive a
+                digital booking confirmation instantly.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        Bus<span>Go</span>
+    </div>
+
+    <p>
+        Smart booking. Smarter journeys.
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 BusGo · Frontend Web Application
+    </small>
+
+</footer>
+
+
+<!-- ================= BOOKING MODAL ================= -->
+
+<div
+    class="modal-overlay"
+    id="seatModal"
+>
+
+    <div class="booking-modal">
+
+        <button
+            class="close-btn"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-heading">
+
+            <span>
+                SELECT YOUR SEAT
+            </span>
+
+            <h2 id="selectedBusName">
+                Bus Booking
+            </h2>
+
+            <p id="selectedRoute"></p>
+
+        </div>
+
+
+        <div class="booking-content">
+
+
+            <!-- SEAT MAP -->
+
+            <div class="seat-area">
+
+                <div class="driver">
+                    🚍 Driver
+                </div>
+
+                <div
+                    class="seat-map"
+                    id="seatMap"
+                ></div>
+
+
+                <div class="seat-legend">
+
+                    <div>
+                        <i class="available"></i>
+                        Available
+                    </div>
+
+                    <div>
+                        <i class="selected-legend"></i>
+                        Selected
+                    </div>
+
+                    <div>
+                        <i class="booked"></i>
+                        Booked
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING DETAILS -->
+
+            <div class="booking-details">
+
+                <h3>
+                    Booking Summary
+                </h3>
+
+
+                <div class="summary-row">
+
+                    <span>Bus</span>
+
+                    <strong id="summaryBus">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>Route</span>
+
+                    <strong id="summaryRoute">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>Seat</span>
+
+                    <strong id="summarySeat">
+                        Not selected
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>Fare</span>
+
+                    <strong id="summaryFare">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <h3>
+                    Passenger Details
+                </h3>
+
+
+                <div class="passenger-input">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="passengerName"
+                        placeholder="Enter passenger name"
+                    >
+
+                </div>
+
+
+                <div class="passenger-input">
+
+                    <label>
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="passengerPhone"
+                        placeholder="10-digit mobile number"
+                        maxlength="10"
+                    >
+
+                </div>
+
+
+                <button
+                    class="confirm-btn"
+                    onclick="confirmBooking()"
+                >
+                    Confirm Booking →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SUCCESS MODAL ================= -->
+
+<div
+    class="success-overlay"
+    id="successModal"
+>
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Booking Confirmed!
+        </h2>
+
+        <p>
+            Your bus ticket has been successfully booked.
+        </p>
+
+
+        <div class="ticket">
+
+            <div>
+                <span>Passenger</span>
+                <strong id="ticketName">-</strong>
+            </div>
+
+            <div>
+                <span>Bus</span>
+                <strong id="ticketBus">-</strong>
+            </div>
+
+            <div>
+                <span>Route</span>
+                <strong id="ticketRoute">-</strong>
+            </div>
+
+            <div>
+                <span>Seat</span>
+                <strong id="ticketSeat">-</strong>
+            </div>
+
+            <div>
+                <span>Amount</span>
+                <strong id="ticketAmount">-</strong>
+            </div>
+
+        </div>
+
+
+        <button
+            class="done-btn"
+            onclick="closeSuccess()"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html> 
